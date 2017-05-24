@@ -1,9 +1,9 @@
-## WordPress using Azure MySQL and Azure App Services for Linux
+## WordPress Files
 * WordPress 4.7.5 Files
 * Patched to support Azure MySQL service
 
-## WordPress patch
-* wp-includes/wp-db.php is patched to support SSL to Azure MySQL  
+## WordPress Patch
+* html/wp-includes/wp-db.php is patched to support SSL to Azure MySQL  
     Make sure to patch the file if you use a separate repo as this file is part of the WordPress distribution
 ```
 if ( defined('MYSQL_SSL_CA')) {
@@ -11,7 +11,8 @@ if ( defined('MYSQL_SSL_CA')) {
 }
 ```
 
-## WordPress config
+## WordPress Config
+* Added html/wp-config.php
 * wp-config is not included in the standard WordPress distribution
 
 * wp-config defines MYSQL_SSL_CA to support SSL to the Azure MySQL service
@@ -21,7 +22,6 @@ define('MYSQL_SSL_CA', '/etc/ssl/certs/Baltimore_CyberTrust_Root.pem');
 
 * wp-config uses environment variables for MySQL connection information  
 ```
-define('MYSQL_SSL_CA', '/etc/ssl/certs/Baltimore_CyberTrust_Root.pem');
 define('DB_NAME', getenv('WORDPRESS_DB_NAME'));
 define('DB_USER', getenv('WORDPRESS_DB_USER'));
 define('DB_PASSWORD', getenv('WORDPRESS_DB_PASSWORD'));
