@@ -1534,6 +1534,12 @@ class wpdb {
 				}
 			}
 
+      # Add SSL support for Azure MySQL service
+      if ( defined('MYSQL_SSL_CA')) {
+              mysqli_ssl_set($this->dbh,NULL,NULL,MYSQL_SSL_CA,NULL,NULL);
+      }
+
+
 			if ( WP_DEBUG ) {
 				mysqli_real_connect( $this->dbh, $host, $this->dbuser, $this->dbpassword, null, $port, $socket, $client_flags );
 			} else {
